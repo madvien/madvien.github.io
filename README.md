@@ -1,176 +1,170 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+<a href="https://laravel.com" target="_blank"><img src="https://user-images.githubusercontent.com/5760249/132945127-a7d3a4bb-1ffc-4658-8096-c9cfc2f5c3dd.png" width="400"></a>
+</p>
 
-# Laravel Docker Starter Kit
-- Laravel v11.x
-- PHP v8.3.x
-- MySQL v8.1.x (default)
-- MariaDB v10.11
-- PostgreSQL v16.x
-- pgAdmin v4.x
-- phpMyAdmin v5.x
-- Mailpit v1.x
-- Node.js v18.x
-- NPM v10.x
-- Yarn v1.x
-- Vite v5.x
-- Rector v1.x
-- Redis v7.2.x
+# Laravel Vue Starter
 
-# Requirements
-- Stable version of [Docker](https://docs.docker.com/engine/install/)
-- Compatible version of [Docker Compose](https://docs.docker.com/compose/install/#install-compose)
+The project was created to save myself time for redoing the same things all over again when starting a new Laravel/Vue project.
 
-# How To Deploy
+The main goal of this project is to reduce code and make everything simpler for bootstrapping new projects. 
 
-### For first time only !
-- `git clone https://github.com/refactorian/laravel-docker.git`
-- `cd laravel-docker`
-- `docker compose up -d --build`
-- `docker compose exec php bash`
-- `composer setup`
+The project is built with the following components:
 
-### From the second time onwards
-- `docker compose up -d`
+- Vue 3 / Pinia / VueRouter
+- Vue 3 Composition API
+- Vite 3
+- Laravel Framework
+- Laravel Sanctum
+- Laravel Fortify
+- Tailwind
+- ForkAwesome
+- Media Library (by Spatie)
+- Bouncer (by JosephSilber)
 
-# Notes
+## ⚡️ How to install
 
-### Laravel Versions
-- [Laravel 11.x](https://github.com/refactorian/laravel-docker/tree/main)
-- [Laravel 10.x](https://github.com/refactorian/laravel-docker/tree/laravel_10x)
+Installation is simple. Just like your ordinary Laravel app.
 
-### Laravel App
-- URL: http://localhost
+1. `git clone`
+2. `cd laravel-vue-starter`
+3. `composer install`
+4. `cp .env.example .env`
+5. `php artisan key:generate`   
+6. `npm install`
+7. `npm run watch` (or if production `npm run build`)
 
-### Mailpit
-- URL: http://localhost:8025
+## ⚡️ How it works
 
-### phpMyAdmin
-- URL: http://localhost:8080
-- Server: `db`
-- Username: `refactorian`
-- Password: `refactorian`
-- Database: `refactorian`
+### ➡️ Theming
 
-### Adminer
-- URL: http://localhost:9090
-- Server: `db`
-- Username: `refactorian`
-- Password: `refactorian`
-- Database: `refactorian`
+The project supports theming, you can set a global color for the application theme, it can be done in `tailwind.config.js`.
 
-### Basic docker compose commands
-- Build or rebuild services
-    - `docker compose build`
-- Create and start containers
-    - `docker compose up -d`
-- Stop and remove containers, networks
-    - `docker compose down`
-- Stop all services
-    - `docker compose stop`
-- Restart service containers
-    - `docker compose restart`
-- Run a command inside a container
-    - `docker compose exec [container] [command]`
+```js
+module.exports = {
+    // ...
+    theme: {
+        extend: {
+            colors: {
+                theme: colors.teal,
+                danger: colors.red
+            }
+        }
+    },
+    //...
+};
+```
 
-### Useful Laravel Commands
-- Display basic information about your application
-    - `php artisan about`
-- Remove the configuration cache file
-    - `php artisan config:clear`
-- Flush the application cache
-    - `php artisan cache:clear`
-- Clear all cached events and listeners
-    - `php artisan event:clear`
-- Delete all of the jobs from the specified queue
-    - `php artisan queue:clear`
-- Remove the route cache file
-    - `php artisan route:clear`
-- Clear all compiled view files
-    - `php artisan view:clear`
-- Remove the compiled class file
-    - `php artisan clear-compiled`
-- Remove the cached bootstrap files
-    - `php artisan optimize:clear`
-- Delete the cached mutex files created by scheduler
-    - `php artisan schedule:clear-cache`
-- Flush expired password reset tokens
-    - `php artisan auth:clear-resets`
+### ➡️ Authentication
 
-### Laravel Pint (Code Style Fixer | PHP-CS-Fixer)
-- Format all files
-    - `vendor/bin/pint`
-- Format specific files or directories
-    - `vendor/bin/pint app/Models`
-    - `vendor/bin/pint app/Models/User.php`
-- Format all files with preview
-    - `vendor/bin/pint -v`
-- Format uncommitted changes according to Git
-    - `vendor/bin/pint --dirty`
-- Inspect all files
-  - `vendor/bin/pint --test`
+The project ships with complete authentication boilerplate including:
+- Login
+- Register
+- Forget Password
+- Reset Password
 
-### Rector
-- Dry Run
-    - `vendor/bin/rector process --dry-run`
-- Process
-    - `vendor/bin/rector process`
+### ➡️ Authorization
 
----
+The project is configured to use [Bouncer](https://github.com/JosephSilber/bouncer) package for managing authorization across your routes. Authorization is important security subject, so please consult bouncer's package documentation.
 
-## About Laravel
+### ➡️ Localization / i18n
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The project supports localization / i18n, to translate the front-end use `lang/{code}/frontend.php` file.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### ➡️ Users CRUD 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For your convenience the project comes with complete `users` crud that includes examples of:
 
-## Learning Laravel
+- List page with filters and pagination
+- Edit/create pages with form for editing user that includes ajax based role search field
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ➡️ Structure
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+The front-end code is located in `resources/js`. The code is organized in different directories to make things more readable.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Directory    | Description                           |
+|--------------|---------------------------------------|
+| views        | The home of views                     |
+| + pages      | The home of the pages                 |
+| + icons      | The home of the icons                 |
+| + layouts    | The home of the global layouts        |
+| + components | The home of the reusable components   |
+| helpers      | The home of the helper utilites       |
+| plugins      | The home of the plugins configuration |
+| router       | The home of the router configuration  |
+| services     | The home of the HTTP services         |
+| stores       | The home of the Pinia stores          |
+| stub         | The home of the static constants      |
 
-## Laravel Sponsors
+### ➡️ Components
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+The project ships with the most useful components that are required for one application (no bullshit), including:
 
-### Premium Partners
+| Name      | Description                                                | Parameters                                                                                                                                                     | Events                                   | Location               |
+|-----------|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|------------------------|
+| Page      | The main page wrapper                                      | title, breadcrumbs (array), actions (array of actions on top), is-loading                                                                                      | n/a                                      | views/layouts          |
+| Panel     | Panel wrapper for displaying panels into the pages         | title, is-loading, body-padding                                                                                                                                | n/a                                      | views/components       |
+| Modal     | Modal wrapper for creating modals                          | is-showing, is-loading, show-close                                                                                                                             | @close                                   | views/components       |
+| Form      | Form wrapper                                               | title, is-loading                                                                                                                                              | n/a                                      | views/components       |
+| Table     | A custom table with sorting and pagination support         | headers (array), records (array), actions (array of row actions), sorting (object of keys with true/false), pagination: (object of Laravel pagination data)    | @page-changed, @action, $sort            | views/components       |
+| Alert     | Alert component that pulls alrts from AlertStore           | n/a                                                                                                                                                            | n/a                                      | views/components       |
+| Badge     | Component that displays highlighted text with background   | theme (success, info, warning, danger, error)                                                                                                                  | n/a                                      | views/components       |
+| TextInput | Custom text field with type={text,..., textarea} support   | name, label, v-model, type (text,...,textarea, etc), show-label, required, disabled, placeholder                                                               | default                                  | views/components/input |
+| FileInput | File input with custom button and multiple choices support | name, label, v-model, show-label, required, disabled, placeholder, multiple, accept                                                                            | default + @click, @error, @input, @clear | views/components/input |
+| Dropdown  | Dropdown field with server side support                    | name, label, v-model, show-label, required, disabled, placeholder, multiple, server (endpoint), server-per-page (items per page), server-search-min-characters | default                                  | views/components/input |
+| Button    | Button/Router link component                               | label, icon, theme (success, info, warning, danger, error), disabled, to (:to is router url, when specified the button is rendered as router-link)             | default                                  | views/components/input |
+| Spinner   | Spinner icon used mostly for loading                       | text, text-new-line (whether to break the text under the spinner)                                                                                              | n/a                                      | views/components/icons |
+| Icon      | Icon wrapper, currently uses fork awesome                  | name (the icon name without the fa- part)                                                                                                                      | n/a                                      | views/components/icons |
+| Avatar    | Default Avatar icon                                        | n/a                                                                                                                                                            | n/a                                      | views/components/icons |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Note: Please always look in the components, this table does not show everything.
 
-## Contributing
+From here, you are on your own. Develop new pages, models, components, use professional IDE for development to improve your efficiency.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<p><img width="100%" src="https://user-images.githubusercontent.com/5760249/210167222-e04312ac-46ef-4dcd-a4d5-00c3a207bf32.gif"/></p>
 
-## Code of Conduct
+### ➡️ CORS
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Please make sure you have APP_URL, SANCTUM_STATEFUL_DOMAINS and SESSION_DOMAIN set correctly in [.env](https://github.com/gdarko/laravel-vue-starter/blob/master/.env.example) file as follows:
 
-## Security Vulnerabilities
+#### Normal domain
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+APP_URL=http://mywebsite.com
 
-## License
+SANCTUM_STATEFUL_DOMAINS=mywebsite.com
+SESSION_DOMAIN=mywebsite.com
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Localhost with port
+
+```
+APP_URL=http://localhost:8000
+
+SANCTUM_STATEFUL_DOMAINS=localhost:8000
+SESSION_DOMAIN=localhost
+```
+
+## ⚡️ Contributions
+
+Pull requests are welcome, feel free to contribute to this project.
+
+## ⚡️ License
+
+```
+Copyright (C) 2022 Darko Gjorgjijoski (https://darkog.com)
+
+This file is part of Laravel Vue Starter
+
+Laravel Vue Starter is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+Laravel Vue Starter is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Laravel Vue Starter. If not, see <https://www.gnu.org/licenses/>.
+```
